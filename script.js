@@ -1,3 +1,4 @@
+// Counter Script: Global Operators
 var hourlyArray;
 var currentTime = moment();
 var currentHour = currentTime.hour();
@@ -31,6 +32,8 @@ function updateCurrentScheduleTime() {
     });
 };
 
+// The delay to adding the animation class allows enough time to fully remove the class,
+// allowing the animation to play again.
 function updateLocalStorage() {
     event.preventDefault();
     let btnIndex = Number($(this).attr('id'));
@@ -46,10 +49,11 @@ function updateLocalStorage() {
         setTimeout(function () {
             $('.alert-success').addClass('alert-animation');
             $('.alert-success').text(`Successfully saved task at ${$(".hour")[btnIndex].textContent.trim()}!`);
-        }, 50);
+        }, 100);
     };
 };
 
+// Write saved tasks to the planner on page load
 function writeCurrentTasks() {
     $.each(hourlyArray, function (i) {
         if (hourlyArray[i]) {
@@ -58,6 +62,7 @@ function writeCurrentTasks() {
     });
 };
 
+// Updates the current time every minute and updates the planner style every hour
 setInterval(function () {
     currentTime = moment();
     if (currentHour < currentTime.hour()) {
@@ -65,6 +70,7 @@ setInterval(function () {
     }
 }, 60000);
 
+// Initial function calls and event listener
 updateCurrentScheduleTime();
 writeCurrentTasks();
 $("button").click(updateLocalStorage);
