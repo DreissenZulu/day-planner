@@ -72,7 +72,7 @@ setInterval(function () {
         updateCurrentScheduleTime();
         $("#currentDay").text(`${currentTime.format('dddd, MMMM Do')}`);
     }
-}, 60000);
+}, 1000);
 
 // Initial function calls and event listener
 updateCurrentScheduleTime();
