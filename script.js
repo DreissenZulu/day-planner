@@ -1,6 +1,7 @@
 var hourlyArray;
 var currentTime = moment();
 var textBlock = $(".col-8");
+var plannerTask = $("textarea");
 
 // If a local hourly tasks exist, import them, otherwise initialize the array
 if (localStorage.getItem("localHourlyTasks")) {
@@ -25,3 +26,20 @@ function updateCurrentScheduleTime() {
         }
     })
 }
+
+function updateLocalStorage() {
+    event.preventDefault();
+    let btnIndex = Number($(this).attr('id'));
+    hourlyArray[btnIndex] = plannerTask[btnIndex].value;
+    localStorage.setItem("localHourlyTasks", JSON.stringify(hourlyArray));
+}
+
+function writeCurrentTasks() {
+    $.each(hourlyArray, function(i) {
+        plannerTask[i].value = hourlyArray[i];
+    })
+}
+
+updateCurrentScheduleTime();
+writeCurrentTasks();
+$("button").click(updateLocalStorage);
