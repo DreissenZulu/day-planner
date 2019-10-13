@@ -1,7 +1,7 @@
 // Counter Script: Global Operators
 var hourlyArray;
 var currentTime = moment();
-var currentHour = currentTime.hour();
+var currentHour;
 var textBlock = $(".col-8");
 var plannerTask = $("textarea");
 $.each(plannerTask, function () {
@@ -30,6 +30,7 @@ function updateCurrentScheduleTime() {
             $(this).addClass('future');
         }
     });
+    currentHour = currentTime.hour();
 };
 
 // The delay to adding the animation class allows enough time to fully remove the class,
