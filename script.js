@@ -66,7 +66,7 @@ function writeCurrentTasks() {
 // Updates the current time every minute and updates the planner style every hour
 setInterval(function () {
     currentTime = moment();
-    if (currentHour < currentTime.hour()) {
+    if ((currentHour < currentTime.hour()) || (currentHour > currentTime.hour())) {
         updateCurrentScheduleTime();
     }
 }, 60000);
